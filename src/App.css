@@ -1,0 +1,58 @@
+.App{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+}
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-family: 'Georgia', sans-serif;
+    color: #223C30;
+}
+.title-text1-h2 {
+    font-size: .9rem;
+    margin-bottom: 0.5rem;
+    font-family: 'Arial', sans-serif;
+    color: #223C30;
+}
+.title-text2-h2{
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-family: 'Arial', sans-serif;
+    color: #223C30;
+}
+.container-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-direction: column;
+    width: 90%;
+}
+.button-container {
+    background-color: #FFFFFF;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: space-between;
+}
+.button-info{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+h3{
+    color: #223C30;
+    font-family: 'Arial', sans-serif;
+    font-size: 1.1rem;
+}
+.debate-grupal{
+    background-color: #284D3B;
+}
+.debate-grupal h3{
+    color: #FFFFFF;
+}
