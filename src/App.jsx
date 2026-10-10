@@ -26,13 +26,13 @@ const archivos = [
     id: 3,
     title: 'Pronunciamiento de la Municipalidad de Sorochuco',
     image: municipalidad,
-    link: './files/pronunciamientoMunicipal.jpg'
+    link: './files/pronunciamentoMunicipal.jpg'
   },
   {
     id: 4,
     title: 'Informe ambiental de la Org. Cajamarca Verde',
     image: ambiente,
-    link: './files/informeAmbiental.pdf'
+    link: './files/informeAmbiental.jpg'
   },
   {
     id: 5,
