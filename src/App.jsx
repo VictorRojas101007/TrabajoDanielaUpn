@@ -7,9 +7,46 @@ import noticia from './assets/noticia.svg'
 import flecha from './assets/flecha.svg'
 import flechaWhite from './assets/flechaWhite.svg'
 import debateWhite from './assets/debateWhite.svg'
+import { useState } from 'react'
+
+const archivos = [
+  {
+    id: 1,
+    title: 'Noticia periodística',
+    image: noticia,
+    link: './files/noticiaArchivo.jpg'
+  },
+  {
+    id: 2,
+    title: 'Comunicado oficial de la empresa MANSA',
+    image: empresa,
+    link: './files/comunicadoMansa.png'
+  },
+  {
+    id: 3,
+    title: 'Pronunciamiento de la Municipalidad de Sorochuco',
+    image: municipalidad,
+    link: './files/pronunciamientoMunicipal.jpg'
+  },
+  {
+    id: 4,
+    title: 'Informe ambiental de la Org. Cajamarca Verde',
+    image: ambiente,
+    link: './files/informeAmbiental.pdf'
+  },
+  {
+    id: 5,
+    title: 'Debate de los involucrados en el caso',
+    image: debateWhite,
+    link: 'https://padlet.com/danimazmela/cerro-verde-alto-debate-sobre-mineria-derechos-y-desarrollo-jdwh3775m8ohti86',
+    flecha: flechaWhite,
+    css: "debate-grupal"
+  }
+] 
 
 function App() {
 
+  const [archivoAbierto, setArchivoAbierto] = useState(null);
 
   return (
     <>
@@ -20,76 +57,48 @@ function App() {
           <h2 className="title-text2-h2">Aquí reunimos los documentos y el debate de los involucrados</h2>
        </div>
        <div className="container-buttons">
-        <div className="button-container">
+        
+        {archivos.map((archivo) => (
+          <div key={archivo.id} className={`button-container ${archivo.css || ''}`}>
+            <div className="prueba">
           <div className="button-info">
-            <img src={noticia} alt="Noticia periodística" />
-            <h3>Noticia periodística</h3>
+            <img src={archivo.image} alt={archivo.title} />
+            <h3>{archivo.title}</h3>
           </div>
             <a
-              href="https://drive.google.com/file/d/1_7aPC2zmqfk6fFgTbfQyx6Q9J2VafFhu/view?usp=drivesdk"
-              className="button-info"
-              target="_blank"
-              rel="noopener noreferrer"
+              onClick={() => setArchivoAbierto(archivo.id)}
+
+              className={`button-info `}
             >
-              <img src={flecha} alt="Flecha" />
+              <img src={archivo.flecha || flecha} alt="Flecha" />
             </a>
+            </div>
+            {
+              archivoAbierto === archivo.id && (
+                <div className="pdf-container">
+                  <section
+                    className="pdf-ventana"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label={archivo.title}
+                  >
+
+                    <a onClick={() => setArchivoAbierto(null)} className="close-button">
+                      Cerrar X
+                    </a>
+                    <iframe
+                    src={archivo.link}
+                    title={archivo.title}
+                    allowFullScreen
+                    />
+
+                  </section>
+                </div>
+              )
+            }
         </div>
-        <div className="button-container">
-          <div className="button-info">
-            <img src={empresa} alt="Comunicado de Andina del Norte" />
-            <h3>Comunicado oficial de la empresa MANSA</h3>
-          </div>
-            <a
-              href="https://drive.google.com/file/d/1mLGmLUhWG8XDrltwjyfnRVBEvyOqhJ5-/view?usp=drivesdk"
-              className="button-info"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src={flecha} alt="Flecha" />
-            </a>
-        </div>
-        <div className="button-container">
-          <div className="button-info">
-            <img src={municipalidad} alt="Municipalidad de Sorochuco" />
-            <h3>Pronunciamiento de la Municipalidad de Sorochuco</h3>
-          </div>
-            <a
-              href="https://drive.google.com/file/d/1s8178zWzi7U5j1rRRhaGGmhdx39YIIG2/view?usp=drivesdk"
-              className="button-info"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src={flecha} alt="Flecha" />
-            </a>
-        </div>
-        <div className="button-container">
-          <div className="button-info">
-            <img src={ambiente} alt="Informe ambiental" />
-            <h3>Informe ambiental de la Org. Cajamarca Verde</h3>
-          </div>
-            <a
-              href="https://drive.google.com/file/d/1j3TNHCJjHKgQUSq6F6QSCiRFO9oibUGj/view?usp=drivesdk"
-              className="button-info"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src={flecha} alt="Flecha" />
-            </a>
-        </div>
-        <div className="button-container debate-grupal">
-          <div className="button-info ">
-            <img src={debateWhite} alt="Debate grupal en Padlet" />
-            <h3>Debate de los involucrados en el caso</h3>
-          </div>
-            <a
-              href="https://padlet.com/danimazmela/cerro-verde-alto-debate-sobre-mineria-derechos-y-desarrollo-jdwh3775m8ohti86"
-              className="button-info"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src={flechaWhite} alt="Flecha" />
-            </a>
-        </div>
+        ))}
+
        </div>
       </section>
 
