@@ -73,29 +73,44 @@ function App() {
               <img src={archivo.flecha || flecha} alt="Flecha" />
             </a>
             </div>
-            {
-              archivoAbierto === archivo.id && (
-                <div className="pdf-container">
-                  <section
-                    className="pdf-ventana"
-                    role="dialog"
-                    aria-modal="true"
-                    aria-label={archivo.title}
-                  >
+{archivoAbierto === archivo.id && (
+  <div className="visor-fondo">
+    <section
+      className="visor-ventana"
+      role="dialog"
+      aria-modal="true"
+      aria-label={archivo.title}
+    >
+      <header className="visor-cabecera">
+        <span>{archivo.title}</span>
 
-                    <a onClick={() => setArchivoAbierto(null)} className="close-button">
-                      Cerrar X
-                    </a>
-                    <iframe
-                    src={archivo.link}
-                    title={archivo.title}
-                    allowFullScreen
-                    />
+        <button
+          type="button"
+          onClick={() => setArchivoAbierto(null)}
+        >
+          Cerrar ✕
+        </button>
+      </header>
 
-                  </section>
-                </div>
-              )
-            }
+      <div className="visor-contenido">
+        {/\.(jpg|jpeg|png|webp)$/i.test(archivo.link) ? (
+          <img
+            className="visor-imagen"
+            src={archivo.link}
+            alt={archivo.title}
+          />
+        ) : (
+          <iframe
+            className="visor-documento"
+            src={archivo.link}
+            title={archivo.title}
+            allowFullScreen
+          />
+        )}
+      </div>
+    </section>
+  </div>
+)}
         </div>
         ))}
 

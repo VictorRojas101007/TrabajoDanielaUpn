@@ -64,7 +64,124 @@ h3{
     color: #FFFFFF;
 }
 
+.visor-fondo {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.65);
+  animation: visor-aparecer 0.2s ease-out;
+}
 
+.visor-ventana {
+  width: min(100%, 1100px);
+  height: 90vh;
+  height: 90dvh;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: white;
+  border-radius: 14px;
+  animation: visor-abrir 0.25s ease-out;
+}
+
+.visor-cabecera {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+  flex-shrink: 0;
+  border-bottom: 1px solid #ddd;
+  color: #223c30;
+  font-family: Arial, sans-serif;
+}
+
+.visor-cabecera span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.visor-cabecera button {
+  flex-shrink: 0;
+  min-height: 44px;
+  padding: 8px 12px;
+  border: 0;
+  border-radius: 6px;
+  background: #edf0e8;
+  color: #223c30;
+  font: inherit;
+  cursor: pointer;
+}
+
+.visor-contenido {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  background: #f1f1f1;
+}
+
+/* Muestra toda la imagen sin recortarla */
+.visor-contenido > .visor-imagen {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: contain;
+  border-radius: 0;
+}
+
+.visor-documento {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+@media (max-width: 600px) {
+  .visor-fondo {
+    padding: 8px;
+  }
+
+  .visor-ventana {
+    height: calc(100vh - 16px);
+    height: calc(100dvh - 16px);
+    border-radius: 8px;
+  }
+
+  .visor-cabecera {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+}
+
+@keyframes visor-aparecer {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes visor-abrir {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .visor-fondo,
+  .visor-ventana {
+    animation: none;
+  }
+}
 
 @media (max-width: 768px) {
     .App {
